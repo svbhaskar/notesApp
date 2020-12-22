@@ -20,7 +20,7 @@ let addingNote = (title, body) => {
 
     let double = notes.filter((note) => note.title === title);
 
-
+    //! checking if the Note Title is EMPTY
     if(double.length === 0) {
         notes.push(note);
 
@@ -29,7 +29,7 @@ let addingNote = (title, body) => {
         logNote(note);
     }
     else {
-        console.log(chalk.red("Tile already exists.!!!"));
+        console.log(chalk.bgRed("Tile already exists.!!!"));
     }
 }
 
@@ -59,6 +59,10 @@ let removeNote = (title) => {
         console.log(`Body: ${note.body}`);
     }
 
+    let save_note = (note) => {
+        let dataJSON = JSON.stringify(note);
+        fs.writeFileSync('notes.json',dataJSON);
+    }
 
     module.exports = {
         addingNote,
